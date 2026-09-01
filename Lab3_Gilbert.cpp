@@ -53,28 +53,72 @@ int currentRoute, currentDay;
 int aTotal = 0;
 int bTotal = 0;
 int cTotal = 0;
-//Averages per day for each route
-double aAverage, bAverage, cAverage;
+
+//Best and worst days
+int abestDay = 0, bbestDay = 0, cbestDay = 0;
+int aworstDay = 0, bworstDay = 0, cworstDay = 0;
+//Best and worst values
+int abestValue = 0, bbestValue = 0, cbestValue = 0;
+int aworstValue = 0, bworstValue = 0, cworstValue = 0;
+
 
 while (inFile >> value){
     currentRoute = counter / DAYS_PER_ROUTE;     // counter increases until it is above the 30 day mark, then it outputs 1, then 2 (ex. 65/30 = 2 which is route C)
     currentDay   = counter % DAYS_PER_ROUTE;     // counter / DAYS_PER_ROUTE remainder (ex. 17/30 = 17 remainder)
     counter++;
 
+        //Sums of all the route values
+        if (currentRoute == 0) {
+            aTotal += value; 
+        } 
+        else if (currentRoute == 1) {
+            bTotal += value;
+        }
+        else if (currentRoute == 2) {
+            cTotal += value;
+        }
 
-    if (currentRoute == 0) {
-        aTotal += value; 
-    } 
-    else if (currentRoute == 1) {
-        bTotal += value;
+        //Finding the best and worst days/values for all the routes
+        if (currentRoute == 0 && abestValue < value) {
+            abestValue = value;
+            abestDay = currentDay + 1;
+        }
+        if (currentRoute == 0 && bbestValue < value) {
+            bbestValue = value;
+            bbestDay = currentDay + 1;
+        }
+        if (currentRoute == 0 && cbestValue < value) {
+            cbestValue = value;
+            cbestDay = currentDay + 1;
+        }
     }
-    else if (currentRoute == 2) {
-        cTotal += value;
-    }
-
-    }
 
 
+//Route daily averages:
+double aAverage = aTotal / DAYS_PER_ROUTE;
+double bAverage = bTotal / DAYS_PER_ROUTE;
+double cAverage = cTotal / DAYS_PER_ROUTE;
+//Total and average of all routes:
+
+
+
+
+// THE REPORT
+// 
+//track total riders, daily average, busiest day, slowest day
+
+// ================================================
+//     REGIONAL TRANSIT AUTHORITY — MONTHLY REPORT
+// ================================================
+// Route          Total      Daily Avg   Peak Day   Low Day
+// ------------------------------------------------
+// Route A        9,847      328.2       Day 14     Day 22
+// Route B       11,203      373.4       Day  3     Day 29
+// Route C        8,991      299.7       Day 18     Day  7
+// ------------------------------------------------
+// TOTAL         30,041      333.8 passengers/day
+// ================================================
+// Report saved to: transit_report.txt
 cout << "================================================" << "\n";
 cout << setw(45) << "REGIONAL TRANSIT AUTHORITY — MONTHLY REPORT" << "\n";
 cout << "================================================" << "\n";
@@ -91,22 +135,6 @@ cout << "Report saved to: transit_report.txt" << "\n";
 cout << aTotal << "\n";
 cout << bTotal << "\n";
 cout << cTotal << "\n";
-
-
-//track total riders, daily average, busiest day, slowest day
-
-// ================================================
-//     REGIONAL TRANSIT AUTHORITY — MONTHLY REPORT
-// ================================================
-// Route          Total      Daily Avg   Peak Day   Low Day
-// ------------------------------------------------
-// Route A        9,847      328.2       Day 14     Day 22
-// Route B       11,203      373.4       Day  3     Day 29
-// Route C        8,991      299.7       Day 18     Day  7
-// ------------------------------------------------
-// TOTAL         30,041      333.8 passengers/day
-// ================================================
-// Report saved to: transit_report.txt
 
 
 
