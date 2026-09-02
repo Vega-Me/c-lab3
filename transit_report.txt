@@ -1,0 +1,12 @@
+================================================
+ REGIONAL TRANSIT AUTHORITY — MONTHLY REPORT
+================================================
+Route          Total      Daily Avg   Peak Day   Low Day
+------------------------------------------------
+Route A       10,138        337.9      Day 17    Day 8
+Route B       13,151        438.4      Day 23    Day 7
+Route C        9,859        328.6      Day 26    Day 1
+------------------------------------------------
+TOTAL       33,148          368.3 passengers/day
+================================================
+Report saved to: transit_report.txt
